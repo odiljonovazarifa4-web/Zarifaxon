@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Osmon koordinatalari va yulduz kattaliklari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e1f; --bg2:#0f1530; --panel:#121a3a; --line:#26305c;
+  --gold:#e8b64f; --blue:#6fb3ff; --text:#dfe4f5; --dim:#93a0c9;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  box-sizing:border-box;
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+body{margin:0;background:radial-gradient(ellipse at top,#111b3f 0%,var(--bg) 60%);color:var(--text);
+  font-family:'Inter',sans-serif;line-height:1.6;}
+h1,h2,h3{font-family:'Spectral',serif;font-weight:700;color:#f4ecd8;margin:0 0 .4em;}
+h1{font-size:1.5rem;padding:1.1rem 1rem .3rem;}
+h2{font-size:1.25rem;border-bottom:1px solid var(--line);padding-bottom:.4rem;}
+h3{font-size:1.02rem;color:var(--gold);}
+p{margin:.5em 0;color:var(--text);}
+.sub{color:var(--dim);font-size:.85rem;padding:0 1rem 1rem;margin-top:-.6rem;}
+.wrap{max-width:760px;margin:0 auto;}
+nav{display:flex;gap:.4rem;padding:0 1rem 1rem;position:sticky;top:env(safe-area-inset-top,0px);
+  background:var(--bg);z-index:5;overflow-x:auto;}
+nav button{flex:1;min-width:100px;background:var(--panel);border:1px solid var(--line);color:var(--dim);
+  padding:.6rem .4rem;border-radius:10px;font-size:.8rem;font-family:'Inter',sans-serif;cursor:pointer;}
+nav button.active{background:linear-gradient(160deg,#1c2757,#141c40);color:var(--gold);border-color:var(--gold);}
+section{display:none;padding:.2rem 1rem 2rem;}
+section.active{display:block;}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1rem;margin:.8rem 0;}
+.formula{background:#0c1230;border:1px solid var(--line);border-radius:10px;padding:.7rem 1rem;
+  font-family:'Spectral',serif;font-size:1.05rem;color:var(--gold);text-align:center;margin:.6rem 0;overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin:.5rem 0;}
+td,th{border-bottom:1px solid var(--line);padding:.4rem .3rem;text-align:left;}
+th{color:var(--gold);font-family:'Spectral',serif;}
+.row{display:flex;gap:.8rem;flex-wrap:wrap;align-items:flex-start;}
+.col{flex:1;min-width:230px;}
+label{display:block;font-size:.8rem;color:var(--dim);margin:.5rem 0 .1rem;}
+input[type=range]{width:100%;accent-color:var(--gold);}
+.val{color:var(--gold);font-weight:600;}
+svg{width:100%;height:auto;background:#080c1e;border-radius:12px;border:1px solid var(--line);}
+.badge{display:inline-block;background:#1c2757;color:var(--blue);border-radius:6px;padding:.1rem .5rem;
+  font-size:.75rem;margin-left:.3rem;}
+.presets{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0;}
+.presets button{background:#182253;border:1px solid var(--line);color:var(--text);border-radius:8px;
+  padding:.35rem .6rem;font-size:.75rem;cursor:pointer;}
+.presets button:hover{border-color:var(--gold);}
+.legend{font-size:.75rem;color:var(--dim);margin-top:.3rem;}
+.playbtn{width:100%;margin-top:.6rem;background:#182253;border:1px solid var(--blue);color:var(--blue);
+  border-radius:8px;padding:.5rem;font-size:.8rem;cursor:pointer;}
+.playbtn.on{background:var(--blue);color:#081226;}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:.3rem;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🔭 Osmon koordinatalari. Yulduzlar xaritalari. Koʻrinma yulduz kattaliklari</h1>
+<div class="sub">11-sinf astronomiya — interaktiv dars materiali</div>
+
+<nav>
+  <button class="active" onclick="showSec(1,this)">1. Koordinatalar</button>
+  <button onclick="showSec(2,this)">2. Xaritalar</button>
+  <button onclick="showSec(3,this)">3. Yulduz kattaligi</button>
+  <button onclick="showSec(4,this)">✅ Testlar</button>
+</nav>
+
+<!-- ============ SECTION 1 ============ -->
+<section id="s1" class="active">
+<h2>Osmon sferasi</h2>
+<p><b>Osmon sferasi</b> — markazida kuzatuvchi joylashgan, ixtiyoriy radiusli xayoliy sfera boʻlib, unga barcha yoritgichlar (Quyosh, Oy, yulduzlar, sayyoralar) proyeksiyalanadi. Bu sfera yordamida yoritgichlarning osmondagi <i>koʻrinma</i> holatini oʻrganish qulay.</p>
+<div class="card">
+<h3>Asosiy nuqta va chiziqlar</h3>
+<table>
+<tr><th>Atama</th><th>Taʼrifi</th></tr>
+<tr><td><b>Zenit (Z)</b></td><td>Kuzatuvchi boshi ustidagi eng yuqori nuqta</td></tr>
+<tr><td><b>Nadir (Z′)</b></td><td>Zenitga qarama-qarshi, oyoq ostidagi nuqta</td></tr>
+<tr><td><b>Dunyo oʻqi</b></td><td>Yer aylanadigan xayoliy oʻq; osmon sferasini ikki nuqtada — <b>qutb nuqtalari</b>da (P va P′) kesib oʻtadi</td></tr>
+<tr><td><b>Osmon ekvatori</b></td><td>Yer ekvatori tekisligining osmon sferasi bilan kesishishidan hosil boʻlgan katta aylana</td></tr>
+<tr><td><b>Matematik gorizont</b></td><td>Kuzatuvchi joyidagi gorizontal tekislikning osmon sferasi bilan kesishishi</td></tr>
+</table>
+</div>
+
+<h2>Gorizontal koordinatalar sistemasi</h2>
+<p>Asosiy tekislik — <b>gorizont</b>. Yoritgich holati ikkita burchak bilan aniqlanadi:</p>
+<ul>
+<li><b>Balandlik (h)</b> — gorizontdan yoritgichgacha boʻlgan burchak, −90° dan +90° gacha (zenitda h=90°).</li>
+<li><b>Azimut (A)</b> — janub (yoki shimol, kelishuvga qarab) nuqtasidan soat strelkasi boʻyicha yoritgichning gorizontdagi proyeksiyasigacha oʻlchangan burchak, 0°–360°.</li>
+</ul>
+<p>Bu sistema <b>teleskopni yoʻnaltirish</b>, kuzatish joyi va vaqtiga bogʻliq amaliy vazifalarda qulay — lekin Yer aylanishi tufayli h va A vaqt oʻtishi bilan uzluksiz oʻzgarib turadi.</p>
+
+<h2>Ekvatorial koordinatalar sistemasi</h2>
+<p>Asosiy tekislik — <b>osmon ekvatori</b>. Bu yerda:</p>
+<ul>
+<li><b>Toʻgʻri koʻtarilish (α)</b> — bahorgi tengkunlik nuqtasidan yulduzning deklinatsiya doirasigacha, ekvator boʻylab, soat strelkasiga teskari oʻlchanadi; soat birliklarida ifodalanadi (0ʰ–24ʰ).</li>
+<li><b>Deklinatsiya (δ)</b> — ekvatordan yulduzgacha boʻlgan burchak, −90° (janubiy qutb) dan +90° (shimoliy qutb) gacha.</li>
+</ul>
+<p><b>Nega aynan shu sistema xaritalarda ishlatiladi?</b> α va δ Yerning oʻz oʻqi atrofida aylanishiga bogʻliq emas — yulduzning osmondagi "doimiy manzili" hisoblanadi (nozik oʻzgarishlar faqat pretsessiya tufayli, juda sekin). Shu sabab barcha yulduz xaritalari va kataloglar ekvatorial koordinatalarda tuziladi.</p>
+
+<div class="card">
+<h3>Interaktiv model: ikkita sistemani solishtiring</h3>
+<p class="legend">Chapdagi diagramma — <b>gorizontal</b> sistema (markaz = zenit, chekka = gorizont). Oʻngdagi — <b>ekvatorial</b> sistema (markaz = shimoliy qutb, chekka = janubiy osmon). Slayderlarni suring va yulduz nuqtasi qanday koʻchishini kuzating.</p>
+<div class="row">
+<div class="col">
+<svg viewBox="0 0 260 260" id="svgHor"></svg>
+<label>Balandlik h = <span class="val" id="hVal">40°</span></label>
+<input type="range" id="hSlider" min="-90" max="90" value="40" oninput="drawHor()">
+<label>Azimut A = <span class="val" id="aVal">120°</span></label>
+<input type="range" id="aSlider" min="0" max="360" value="120" oninput="drawHor()">
+<button class="playbtn" onclick="toggleHorAnim(this)">▶ Chiqish–kulminatsiya–botish</button>
+</div>
+<div class="col">
+<svg viewBox="0 0 260 260" id="svgEq"></svg>
+<label>Toʻgʻri koʻtarilish α = <span class="val" id="raVal">6ʰ</span></label>
+<input type="range" id="raSlider" min="0" max="24" step="0.1" value="6" oninput="drawEq()">
+<label>Deklinatsiya δ = <span class="val" id="decVal">30°</span></label>
+<input type="range" id="decSlider" min="-90" max="90" value="30" oninput="drawEq()">
+<button class="playbtn" onclick="toggleEqAnim(this)">▶ Sutkalik aylanish</button>
+</div>
+</div>
+<p class="legend">"Sutkalik aylanish" — yulduzning Yer aylanishi tufayli qutb atrofida chizadigan doirasi; "Chiqish–kulminatsiya–botish" — uning gorizontga nisbatan sharqdan gʻarbga qarab harakati (soddalashtirilgan namoyish).</p>
+</div>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section id="s2">
+<h2>Yulduz xaritalari</h2>
+<p><b>Yulduz xaritasi</b> — yulduzlarning ekvatorial koordinatalari asosida tuzilgan, ularning osmondagi oʻzaro joylashuvini aks ettiruvchi chizma. Birinchi yulduz katalogini eramizdan avvalgi II asrda <b>Gipparx</b> tuzgan (~850 yulduz); <b>Ptolemey</b> "Almagest" asarida uni 1022 yulduzgacha kengaytirgan. Zamonaviy davrda kompyuter kataloglari (masalan, Gaia missiyasi) milliardlab yulduzni oʻz ichiga oladi.</p>
+
+<h3>Harakatlanuvchi (aylanuvchi) yulduz xaritasi — planisfera</h3>
+<p>Bu ikki aylanadigan diskdan iborat asbob: pastki diskda yulduzlar xaritasi, ustki diskda esa gorizont va soat chizigʻi bor. Sana va vaqtni mos ravishda burab qoʻyilsa, disk oynachasida <b>aynan shu payt osmonda koʻrinadigan</b> yulduzlar qismi aks etadi — chunki osmon Yer aylanishi va yillik harakat tufayli muntazam "aylanadi".</p>
+
+<h3>Yulduz turkumlari va atlaslar</h3>
+<p>Butun osmon xalqaro kelishuv (IAU, 1922–1930) boʻyicha <b>88 ta yulduz turkumiga</b> boʻlingan, ularning har biri aniq chegaralarga ega — bu geografik davlat chegaralariga oʻxshaydi. Yulduz atlaslari (masalan, Uranometriya) turkumlarni va ularning yulduzlarini batafsil koʻrsatadi.</p>
+
+<div class="card">
+<h3>Interaktiv planisfera</h3>
+<p class="legend">Sana va soatni tanlang — yulduzlar osmoni gorizontga nisbatan qanday aylanishini koʻring. Kulrang qism — gorizont ostida (koʻrinmaydi), yorqin qism — koʻrinadigan osmon.</p>
+<svg viewBox="0 0 300 300" id="svgSky"></svg>
+<div class="row">
+<div class="col">
+<label>Oy: <span class="val" id="monVal">Yanvar</span></label>
+<input type="range" id="monSlider" min="1" max="12" value="1" oninput="drawSky()">
+</div>
+<div class="col">
+<label>Soat: <span class="val" id="hourVal">21:00</span></label>
+<input type="range" id="hourSlider" min="0" max="23" value="21" oninput="drawSky()">
+</div>
+</div>
+<button class="playbtn" onclick="toggleSkyAnim(this)">▶ Tunni jadal koʻrsatish</button>
+<div class="legend"><span class="dot" style="background:#e8b64f"></span>Koʻrinadigan yulduzlar &nbsp;
+<span class="dot" style="background:#3a4468"></span>Gorizont ostida &nbsp;
+<span class="dot" style="background:#6fb3ff"></span>Turkum chizigʻi</div>
+</div>
+
+<div class="card">
+<h3>Yulduz turkumi shaklini toping</h3>
+<p class="legend">Yuqoridagi xaritada koʻk chiziqlar bilan bogʻlangan ikkita mashhur turkum shakli koʻrsatilgan — ular ham osmon bilan birga aylanadi. Nomini bosing va uni xaritada kuzating.</p>
+<div class="presets">
+<button onclick="highlightConst('bd')">Katta Ayiq (Ursa Major)</button>
+<button onclick="highlightConst('or')">Orion</button>
+</div>
+</div>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section id="s3">
+<h2>Koʻrinma yulduz kattaligi</h2>
+<p>Eramizdan avvalgi II asrda Gipparx yulduzlarni yorqinligiga qarab 6 ta sinfga ajratgan: eng yorqinlari — <b>1-kattalik</b>, koʻz ilgʻamaydigan chegaradagilari — <b>6-kattalik</b>. Muhim xususiyat: <b>son qanchalik katta boʻlsa, yulduz shunchalik xira</b> — bu teskari bogʻlanish!</p>
+
+<div class="formula">m₁ − m₂ = −2,5·lg(E₁ / E₂)</div>
+<p>Bu yerda <b>m</b> — koʻrinma yulduz kattaligi, <b>E</b> — yoritgichdan kelayotgan yorugʻlik oqimi (yoritilganlik). Formuladan koʻrinadiki, kattalik <b>1</b> ga farq qilganda yorugʻlik <b>2,512</b> marta (¹⁰√100), 5 ga farq qilganda esa aynan <b>100</b> marta oʻzgaradi.</p>
+
+<div class="card">
+<h3>Misollar</h3>
+<table>
+<tr><th>Obyekt</th><th>m</th></tr>
+<tr><td>Quyosh</td><td>−26,7</td></tr>
+<tr><td>Toʻlin Oy</td><td>−12,7</td></tr>
+<tr><td>Venera (eng yorqin)</td><td>−4,6</td></tr>
+<tr><td>Sirius (eng yorqin yulduz)</td><td>−1,46</td></tr>
+<tr><td>Polyaris (Qutb yulduzi)</td><td>~2,0</td></tr>
+<tr><td>Koʻz bilan koʻrish chegarasi</td><td>~6,0</td></tr>
+</table>
+<p class="legend">Manfiy kattaliklar — juda yorqin obyektlar; musbat kattaliklar ortishi bilan yulduz xiralashadi.</p>
+</div>
+
+<div class="card">
+<h3>Pogson formulasi kalkulyatori</h3>
+<p class="legend">Ikki obyekt kattaligini tanlang — dastur ularning yorugʻlik nisbatini hisoblab beradi.</p>
+<div class="presets">
+<button onclick="setPreset(1,-26.7)">Quyosh</button>
+<button onclick="setPreset(1,-12.7)">Oy</button>
+<button onclick="setPreset(1,-4.6)">Venera</button>
+<button onclick="setPreset(1,-1.46)">Sirius</button>
+<button onclick="setPreset(1,2)">Polyaris</button>
+<button onclick="setPreset(1,6)">Koʻrish chegarasi</button>
+</div>
+<label>m₁ = <span class="val" id="m1Val">-1.46</span> <span class="badge">Sirius</span></label>
+<input type="range" id="m1Slider" min="-27" max="7" step="0.1" value="-1.46" oninput="calcPogson()">
+<label>m₂ = <span class="val" id="m2Val">6.0</span></label>
+<input type="range" id="m2Slider" min="-27" max="7" step="0.1" value="6" oninput="calcPogson()">
+<div class="formula" id="pogsonOut">E₁ / E₂ = —</div>
+<div id="barChart" style="display:flex;align-items:flex-end;gap:2rem;height:140px;padding:0 1rem;"></div>
+<p class="legend" style="margin-top:.8rem;">Grafik: yorugʻlik oqimi (log shkala) kattalikka qanday bogʻliqligini koʻrsatadi. Nuqta — m₁ ning joriy oʻrni.</p>
+<svg viewBox="0 0 300 140" id="svgMagCurve"></svg>
+</div>
+
+<h3>Absolyut yulduz kattaligi haqida qisqacha</h3>
+<p>Koʻrinma kattalik yulduzning Yerdan <b>uzoqligiga</b> ham bogʻliq — yaqin xira yulduz uzoqdagi yorqin yulduzdan koʻra yorqinroq koʻrinishi mumkin. Shu sabab <b>absolyut yulduz kattaligi (M)</b> kiritilgan — bu yulduz 10 parsek (32,6 yorugʻlik yili) masofada joylashganda ega boʻladigan koʻrinma kattaligi. M yulduzning haqiqiy yorugʻlik quvvatini solishtirish imkonini beradi.</p>
+</section>
+
+<!-- ============ SECTION 4: TESTS ============ -->
+<section id="s4">
+<h2>Bilimni tekshirish testi</h2>
+<p class="sub" style="padding:0;margin:0 0 .8rem;">Har bir mavzu boʻyicha 5 tadan, jami 15 ta savol. Javoblarni belgilang va pastdagi tugmani bosing.</p>
+<div class="card">
+<h3>1-mavzu: Osmon koordinatalari</h3>
+<div id="quiz1"></div>
+</div>
+<div class="card">
+<h3>2-mavzu: Yulduzlar xaritalari</h3>
+<div id="quiz2"></div>
+</div>
+<div class="card">
+<h3>3-mavzu: Yulduz kattaliklari</h3>
+<div id="quiz3"></div>
+</div>
+<button onclick="checkQuiz()" style="width:100%;padding:.8rem;border:none;border-radius:10px;
+  background:linear-gradient(160deg,var(--gold),#c9932f);color:#1a1200;font-weight:600;font-size:.95rem;cursor:pointer;">
+  Natijani tekshirish
+</button>
+<div class="formula" id="quizResult" style="display:none;"></div>
+</section>
+</div>
+
+<script>
+const QUIZ = [
+ {q:"1. Kuzatuvchi boshi ustidagi eng yuqori nuqta qanday ataladi?",o:["Nadir","Zenit","Qutb nuqtasi","Ekvator"],a:1},
+ {q:"2. Gorizontal koordinatalar sistemasida yoritgich holati qaysi ikki kattalik bilan aniqlanadi?",o:["α va δ","h va A","l va b","x va y"],a:1},
+ {q:"3. Ekvatorial sistemada toʻgʻri koʻtarilish (α) qaysi birlikda oʻlchanadi?",o:["Metrda","Gradus va daqiqada","Soat birliklarida","Radianda"],a:2},
+ {q:"4. Nima uchun yulduz xaritalarida ekvatorial koordinatalar ishlatiladi?",o:["Ular Yer aylanishiga bogʻliq emas","Ular kuzatish joyiga bogʻliq","Ular tez oʻzgarib turadi","Faqat Quyosh uchun ishlatiladi"],a:0},
+ {q:"5. Osmon ekvatori nima natijasida hosil boʻladi?",o:["Dunyo oʻqining sfera bilan kesishishidan","Yer ekvatori tekisligining sfera bilan kesishishidan","Gorizont tekisligining kesishishidan","Zenit-nadir chizigʻidan"],a:1},
+ {q:"6. Birinchi yulduz katalogini kim tuzgan?",o:["Ptolemey","Kopernik","Gipparx","Galiley"],a:2},
+ {q:"7. \"Almagest\" asarida necha yulduz keltirilgan?",o:["88","850","1022","6000"],a:2},
+ {q:"8. Butun osmon nechta yulduz turkumiga boʻlingan?",o:["12","48","88","100"],a:2},
+ {q:"9. Aylanuvchi yulduz xaritasidan foydalanish uchun nimani sozlash kerak?",o:["Faqat geografik kenglikni","Sana va vaqtni","Faqat yulduz nomini","Faqat azimutni"],a:1},
+ {q:"10. Yulduz turkumlarining chegaralari nimaga oʻxshaydi?",o:["Tabiiy relyefga","Davlat chegaralariga","Iqlim mintaqalariga","Vaqt zonalariga"],a:1},
+ {q:"11. Gipparx yulduzlarni necha sinfga ajratgan?",o:["4","5","6","10"],a:2},
+ {q:"12. m ortishi bilan yulduz yorqinligi qanday oʻzgaradi?",o:["Ortadi","Kamayadi","Oʻzgarmaydi","Avval ortib, keyin kamayadi"],a:1},
+ {q:"13. Kattaliklar farqi 5 boʻlsa, yorugʻlik oqimi necha marta farq qiladi?",o:["5","10","100","2,512"],a:2},
+ {q:"14. Quyidagilardan qaysi biri eng yorqin?",o:["Sirius","Polyaris","Koʻrish chegarasidagi yulduz","Quyosh"],a:3},
+ {q:"15. Absolyut yulduz kattaligi (M) qanday aniqlanadi?",o:["Haqiqiy masofadagi kattaligi","Yulduz 10 parsekda joylashgandagi koʻrinma kattaligi","Quyoshga nisbatan kattaligi","Eng yorqin paytdagi kattaligi"],a:1}
+];
+function renderQuiz(){
+  [1,2,3].forEach(sec=>{
+    const start=(sec-1)*5, box=document.getElementById('quiz'+sec);
+    let html='';
+    for(let i=start;i<start+5;i++){
+      const item=QUIZ[i];
+      html+=`<div style="margin:.7rem 0;"><p style="margin:0 0 .3rem;">${item.q}</p>`;
+      item.o.forEach((opt,j)=>{
+        html+=`<label style="display:flex;gap:.5rem;align-items:center;font-size:.85rem;color:var(--text);margin:.15rem 0;">
+        <input type="radio" name="q${i}" value="${j}"> ${opt}</label>`;
+      });
+      html+=`</div>`;
+    }
+    box.innerHTML=html;
+  });
+}
+renderQuiz();
+function checkQuiz(){
+  let score=0, unanswered=0;
+  QUIZ.forEach((item,i)=>{
+    const sel=document.querySelector(`input[name="q${i}"]:checked`);
+    const labels=document.querySelectorAll(`input[name="q${i}"]`);
+    labels.forEach(l=>l.parentElement.style.color='var(--text)');
+    if(!sel){unanswered++;return;}
+    if(+sel.value===item.a){
+      score++;
+      sel.parentElement.style.color='#7be08a';
+    } else {
+      sel.parentElement.style.color='#ff8a8a';
+      labels[item.a].parentElement.style.color='#7be08a';
+    }
+  });
+  const r=document.getElementById('quizResult');
+  r.style.display='block';
+  r.textContent = `Natija: ${score} / 15 toʻgʻri` + (unanswered?` (${unanswered} ta savol javobsiz qoldi)`:'');
+}
+</script>
+
+<script>
+function showSec(n,btn){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// ---- Section 1: horizontal & equatorial diagrams ----
+function polarPoint(cx,cy,R,radiusFrac,angleDeg){
+  const a = (angleDeg-90)*Math.PI/180; // 0deg = up (north/zenit ref)
+  const r = R*radiusFrac;
+  return [cx+r*Math.cos(a), cy+r*Math.sin(a)];
+}
+function ring(cx,cy,r,stroke){return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${stroke}" stroke-width="1"/>`;}
+
+function drawHor(){
+  const h = +document.getElementById('hSlider').value;
+  const A = +document.getElementById('aSlider').value;
+  document.getElementById('hVal').textContent = h+'°';
+  document.getElementById('aVal').textContent = A+'°';
+  const cx=130, cy=130, R=110;
+  const frac = (90-h)/180; // h=90 -> center, h=-90 -> edge*2 (clip below horizon visually)
+  const fracClip = Math.min(Math.max((90-h)/180,0),1);
+  const [sx,sy] = polarPoint(cx,cy,R,fracClip,A);
+  let svg = `<circle cx="${cx}" cy="${cy}" r="${R}" fill="#0c1230" stroke="#26305c"/>`;
+  svg += ring(cx,cy,R*0.5,'#1c2757');
+  svg += `<line x1="${cx-R}" y1="${cy}" x2="${cx+R}" y2="${cy}" stroke="#26305c"/>`;
+  svg += `<line x1="${cx}" y1="${cy-R}" x2="${cx}" y2="${cy+R}" stroke="#26305c"/>`;
+  svg += `<circle cx="${cx}" cy="${cy}" r="3" fill="#6fb3ff"/><text x="${cx+6}" y="${cy-4}" fill="#6fb3ff" font-size="10">Zenit</text>`;
+  svg += `<text x="${cx-8}" y="${cy+R+14}" fill="#93a0c9" font-size="10">Janub (gorizont)</text>`;
+  svg += `<circle cx="${sx}" cy="${sy}" r="5" fill="${h<0?'#5a6288':'#e8b64f'}"/>`;
+  svg += `<text x="${sx+8}" y="${sy}" fill="#e8b64f" font-size="10">★ yulduz</text>`;
+  document.getElementById('svgHor').innerHTML = svg;
+}
+function drawEq(){
+  const ra = +document.getElementById('raSlider').value;
+  const dec = +document.getElementById('decSlider').value;
+  document.getElementById('raVal').textContent = ra.toFixed(1)+'ʰ';
+  document.getElementById('decVal').textContent = dec+'°';
+  const cx=130, cy=130, R=110;
+  const frac = (90-dec)/180;
+  const angle = ra*15; // hours to degrees
+  const [sx,sy] = polarPoint(cx,cy,R,frac,angle);
+  let svg = `<circle cx="${cx}" cy="${cy}" r="${R}" fill="#0c1230" stroke="#26305c"/>`;
+  svg += ring(cx,cy,R*0.5,'#1c2757'); // celestial equator approx
+  svg += `<circle cx="${cx}" cy="${cy}" r="3" fill="#6fb3ff"/><text x="${cx+6}" y="${cy-4}" fill="#6fb3ff" font-size="10">Shim. qutb (P)</text>`;
+  svg += `<text x="${cx-30}" y="${cy-R*0.5-6}" fill="#93a0c9" font-size="9">osmon ekvatori</text>`;
+  svg += `<circle cx="${sx}" cy="${sy}" r="5" fill="#e8b64f"/>`;
+  svg += `<text x="${sx+8}" y="${sy}" fill="#e8b64f" font-size="10">★ yulduz</text>`;
+  document.getElementById('svgEq').innerHTML = svg;
+}
+drawHor(); drawEq();
+
+// -- animations for section 1 --
+let horAnimId=null, eqAnimId=null;
+function toggleHorAnim(btn){
+  if(horAnimId){ clearInterval(horAnimId); horAnimId=null; btn.classList.remove('on'); btn.textContent='▶ Chiqish–kulminatsiya–botish'; return; }
+  btn.classList.add('on'); btn.textContent='⏸ Toʻxtatish';
+  let t=0;
+  horAnimId=setInterval(()=>{
+    t=(t+2)%180;
+    const hmax=60;
+    const h = hmax*Math.sin(t*Math.PI/180);
+    const A = 60 + t*(300-60)/180;
+    document.getElementById('hSlider').value = h.toFixed(0);
+    document.getElementById('aSlider').value = A.toFixed(0);
+    drawHor();
+  },60);
+}
+function toggleEqAnim(btn){
+  if(eqAnimId){ clearInterval(eqAnimId); eqAnimId=null; btn.classList.remove('on'); btn.textContent='▶ Sutkalik aylanish'; return; }
+  btn.classList.add('on'); btn.textContent='⏸ Toʻxtatish';
+  eqAnimId=setInterval(()=>{
+    let ra = +document.getElementById('raSlider').value;
+    ra = (ra+0.2)%24;
+    document.getElementById('raSlider').value = ra.toFixed(1);
+    drawEq();
+  },50);
+}
+
+// ---- Section 2: planisphere ----
+const stars = []; // fixed field of "stars" at random-ish equatorial-like positions (angle,radius)
+(function seed(){
+  let seedv=7;
+  function rnd(){seedv=(seedv*9301+49297)%233280;return seedv/233280;}
+  for(let i=0;i<45;i++){stars.push({a:rnd()*360, r:0.15+rnd()*0.85, s:1+rnd()*2});}
+})();
+const monthNames=['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktabr','Noyabr','Dekabr'];
+// simplified constellation shapes as (angleOffset, radiusOffset) chains around a base anchor
+const CONSTELL = {
+  bd:{anchor:{a:200,r:0.55}, pts:[[0,0],[14,0.03],[26,0.10],[34,0.18],[30,0.28],[16,0.30],[6,0.22]], color:'#6fb3ff'},
+  or:{anchor:{a:40,r:0.5}, pts:[[0,0],[6,0.10],[12,0.20],[-8,0.05],[20,0.28]], color:'#e8b64f'}
+};
+let activeConst=null;
+function highlightConst(key){ activeConst = (activeConst===key)?null:key; drawSky(); }
+function drawSky(){
+  const mon = +document.getElementById('monSlider').value;
+  const hour = +document.getElementById('hourSlider').value;
+  document.getElementById('monVal').textContent = monthNames[mon-1];
+  document.getElementById('hourVal').textContent = String(hour).padStart(2,'0')+':00';
+  const rot = hour*15 + mon*30;
+  const cx=150, cy=150, R=140;
+  let svg = `<circle cx="${cx}" cy="${cy}" r="${R}" fill="#060914" stroke="#26305c"/>`;
+  svg += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#3a4468" stroke-dasharray="4 3"/>`;
+  stars.forEach(st=>{
+    const ang = st.a + rot;
+    const [x,y] = polarPoint(cx,cy,R,st.r,ang);
+    const belowHorizon = y > cy + R*0.55;
+    const color = belowHorizon ? '#3a4468' : '#e8b64f';
+    svg += `<circle cx="${x}" cy="${y}" r="${st.s}" fill="${color}"/>`;
+  });
+  // draw constellation shapes
+  Object.keys(CONSTELL).forEach(key=>{
+    const c = CONSTELL[key];
+    const dim = activeConst && activeConst!==key;
+    const pts = c.pts.map(([da,dr])=>{
+      const ang = c.anchor.a+rot+da, r = c.anchor.r+dr;
+      return polarPoint(cx,cy,R,r,ang);
+    });
+    const col = dim ? '#22305c' : c.color;
+    for(let i=0;i<pts.length-1;i++){
+      svg += `<line x1="${pts[i][0]}" y1="${pts[i][1]}" x2="${pts[i+1][0]}" y2="${pts[i+1][1]}" stroke="${col}" stroke-width="${activeConst===key?2:1}"/>`;
+    }
+    pts.forEach(p=>{svg += `<circle cx="${p[0]}" cy="${p[1]}" r="2.5" fill="${col}"/>`;});
+    if(activeConst===key){
+      svg += `<text x="${pts[0][0]+6}" y="${pts[0][1]-6}" fill="${col}" font-size="10">${key==='bd'?'Katta Ayiq':'Orion'}</text>`;
+    }
+  });
+  svg += `<line x1="${cx-R}" y1="${cy+R*0.55}" x2="${cx+R}" y2="${cy+R*0.55}" stroke="#6fb3ff" stroke-width="1.2"/>`;
+  svg += `<text x="${cx-R+4}" y="${cy+R*0.55-4}" fill="#6fb3ff" font-size="9">gorizont</text>`;
+  svg += `<circle cx="${cx}" cy="${cy}" r="2.5" fill="#f4ecd8"/><text x="${cx+6}" y="${cy-4}" fill="#f4ecd8" font-size="9">Qutb</text>`;
+  document.getElementById('svgSky').innerHTML = svg;
+}
+drawSky();
+
+let skyAnimId=null;
+function toggleSkyAnim(btn){
+  if(skyAnimId){ clearInterval(skyAnimId); skyAnimId=null; btn.classList.remove('on'); btn.textContent='▶ Tunni jadal koʻrsatish'; return; }
+  btn.classList.add('on'); btn.textContent='⏸ Toʻxtatish';
+  skyAnimId=setInterval(()=>{
+    let h = +document.getElementById('hourSlider').value;
+    h = (h+1)%24;
+    document.getElementById('hourSlider').value = h;
+    drawSky();
+  },200);
+}
+
+// ---- Section 3: Pogson calculator ----
+function setPreset(which,val){
+  document.getElementById('m'+which+'Slider').value = val;
+  calcPogson();
+}
+function calcPogson(){
+  const m1 = +document.getElementById('m1Slider').value;
+  const m2 = +document.getElementById('m2Slider').value;
+  document.getElementById('m1Val').textContent = m1.toFixed(2);
+  document.getElementById('m2Val').textContent = m2.toFixed(2);
+  const ratio = Math.pow(10, -0.4*(m1-m2));
+  let out;
+  if(ratio>=1000 || ratio<=0.001){ out = ratio.toExponential(2); } else { out = ratio.toFixed(ratio<1?4:2); }
+  document.getElementById('pogsonOut').textContent = `E₁ / E₂ = ${out}  (m₁=${m1.toFixed(2)}, m₂=${m2.toFixed(2)})`;
+  const logr = Math.log10(ratio);
+  const h1 = Math.max(6, 130*Math.min(1, 0.5+logr*0.08));
+  const h2 = Math.max(6, 130*Math.min(1, 0.5-logr*0.08));
+  document.getElementById('barChart').innerHTML = `
+    <div style="text-align:center;flex:1;">
+      <div style="height:${h1}px;background:linear-gradient(#f4ecd8,#e8b64f);border-radius:6px 6px 0 0;"></div>
+      <div style="font-size:.75rem;color:#93a0c9;margin-top:.3rem;">Obyekt 1<br>m=${m1.toFixed(1)}</div>
+    </div>
+    <div style="text-align:center;flex:1;">
+      <div style="height:${h2}px;background:linear-gradient(#c9d6ff,#6fb3ff);border-radius:6px 6px 0 0;"></div>
+      <div style="font-size:.75rem;color:#93a0c9;margin-top:.3rem;">Obyekt 2<br>m=${m2.toFixed(1)}</div>
+    </div>`;
+  drawMagCurve(m1);
+}
+function drawMagCurve(m1){
+  // E(m) relative to m=6 reference, log scale plotted linearly on y (since axis already represents log10 E)
+  const w=300,h=140,pad=28;
+  const mMin=-27, mMax=7;
+  const logMin=-0.4*(mMin-6), logMax=-0.4*(mMax-6); // log10(E) relative
+  function xOf(m){ return pad + (m-mMin)/(mMax-mMin)*(w-2*pad); }
+  function yOf(logE){ return h-pad - (logE-logMax)/(logMin-logMax)*(h-2*pad); }
+  let pts=[];
+  for(let m=mMin;m<=mMax;m+=1){ const logE=-0.4*(m-6); pts.push([xOf(m),yOf(logE)]); }
+  const path = pts.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+  const curX=xOf(m1), curY=yOf(-0.4*(m1-6));
+  let svg = `<line x1="${pad}" y1="${h-pad}" x2="${w-pad}" y2="${h-pad}" stroke="#26305c"/>`;
+  svg += `<line x1="${pad}" y1="${pad}" x2="${pad}" y2="${h-pad}" stroke="#26305c"/>`;
+  svg += `<path d="${path}" fill="none" stroke="#6fb3ff" stroke-width="2"/>`;
+  svg += `<circle cx="${curX}" cy="${curY}" r="5" fill="#e8b64f"/>`;
+  svg += `<text x="${pad}" y="${h-6}" fill="#93a0c9" font-size="9">m (yorqin ← → xira)</text>`;
+  svg += `<text x="4" y="${pad+4}" fill="#93a0c9" font-size="9">E (log)</text>`;
+  document.getElementById('svgMagCurve').innerHTML = svg;
+}
+calcPogson();
+</script>
+</body>
+</html>
