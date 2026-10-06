@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="uz"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Astronomiya nimani o'rganadi? Uning rivojlanish tarixi</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#0d1128;--bg2:#161b3d;--tx:#efe8d6;--mu:#a9adc8;--br:#e3b04b;--tl:#6ccbc0;--rd:#ff7b6b}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:860px;margin:auto;padding:20px 16px 60px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.2}
+h1{font-size:clamp(28px,6vw,44px);margin:.4em 0 .2em}h2{font-size:26px;margin:2em 0 .3em;color:var(--br)}h3{font-size:19px;margin:1.4em 0 .4em}
+p{margin:.4em 0}.mu{color:var(--mu)}
+section{border-top:1px solid #2b3160;padding-top:8px}
+.box{background:var(--bg2);border-radius:14px;padding:14px;margin:12px 0}
+canvas{width:100%;height:auto;display:block;border-radius:10px;background:#050716}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+input[type=range]{flex:1;min-width:140px;accent-color:var(--br)}
+button{background:var(--br);color:#1a1300;border:0;border-radius:999px;padding:9px 18px;font:600 15px system-ui;cursor:pointer}
+button.o{background:transparent;color:var(--tx);border:1px solid #4a5090}button.o.on{background:var(--tl);color:#03201c;border-color:var(--tl)}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--tl);outline-offset:2px}
+.cap{min-height:3.4em;font-family:Fraunces,Georgia,serif;font-size:17px;margin-top:8px}
+.info{font-size:15px}.info b{color:var(--tl)}
+ul{padding-left:20px;margin:.4em 0}li{margin:.25em 0}
+details{background:var(--bg2);border-radius:10px;padding:10px 14px;margin:8px 0}summary{cursor:pointer;font-weight:600}
+</style></head><body><main>
+<h1>Astronomiya nimani o'rganadi?<br>Uning rivojlanish tarixi</h1>
+<p class="mu">11-sinf astronomiya darsi: izoh, simulyatsiyalar va animatsiyalar.</p>
+
+<section><h2>1. Astronomiya nimani o'rganadi?</h2>
+<p>Astronomiya osmon jismlarini (Quyosh, sayyoralar, yulduzlar, galaktikalar) va butun Koinotni o'rganadi: ularning harakati, tuzilishi, kelib chiqishi va rivojlanishini.</p>
+<ul><li><b>Astrometriya:</b> jismlar o'rni va vaqtni o'lchash</li><li><b>Samoviy mexanika:</b> harakat qonunlari</li><li><b>Astrofizika:</b> jismlarning fizik tabiati</li><li><b>Kosmogoniya:</b> jismlarning kelib chiqishi</li><li><b>Kosmologiya:</b> butun Koinot evolyutsiyasi</li></ul>
+<p><b>Hayotdan:</b> kun-tun, fasllar, taqvim, GPS, ob-havo yo'ldoshlari, namoz vaqtlari va Qibla yo'nalishi astronomik hisoblarga tayanadi. Astrologiya esa fan emas, ilmiy asosga ega emas.</p>
+
+<h3>Simulyatsiya: Koinot masshtablari</h3>
+<div class="box"><canvas id="c1" width="640" height="340"></canvas>
+<div class="row"><span>Yaqin</span><input type="range" id="s1" min="0" max="7" value="0" aria-label="Masshtab"><span>Uzoq</span></div>
+<p class="info" id="i1"></p></div>
+
+<h3>Animatsiya (45 s): Astronomiya nimani o'rganadi?</h3>
+<div class="box"><canvas id="c2" width="640" height="360"></canvas>
+<div class="row"><button id="b2">Boshlash</button><input type="range" id="p2" min="0" max="45" step="0.1" value="0" aria-label="Vaqt"></div>
+<div class="cap" id="t2"></div></div></section>
+
+<section><h2>2. Astronomiyaning rivojlanish tarixi</h2>
+<p>Astronomiya eng qadimgi fanlardan biri. Avval osmon dehqonchilik, vaqt hisobi va yo'l topish uchun kuzatilgan. Keyin teleskop, fizika va kosmik texnika fanni tez rivojlantirdi. Quyidagi vaqt chizig'idagi davrni bosing.</p>
+<div class="box"><div class="row" id="tl"></div><p class="info" id="ti"></p></div>
+
+<h3>Simulyatsiya: Mars retrogradi (geosentrik yoki geliosentrik?)</h3>
+<p>Yerdan qaraganda Mars osmonda ba'zan orqaga qaytadi. Geliosentrik modelda buni Yer Marsni quvib o'tishi bilan sodda tushuntiriladi.</p>
+<div class="box"><canvas id="c3" width="640" height="400"></canvas>
+<div class="row"><button id="b3">Boshlash</button><input type="range" id="s3" min="0" max="3.8" step="0.005" value="0" aria-label="Vaqt (yil)"></div>
+<p class="info" id="i3"></p></div>
+
+<h3>Animatsiya (60 s): Yulduzlarga sayohat, 5000 yil</h3>
+<div class="box"><canvas id="c4" width="640" height="360"></canvas>
+<div class="row"><button id="b4">Boshlash</button><input type="range" id="p4" min="0" max="60" step="0.1" value="0" aria-label="Vaqt"></div>
+<div class="cap" id="t4"></div></div></section>
+
+<section><h2>Savollar va faoliyat</h2>
+<details><summary>1. Astronomiya va astrologiya farqi nima?</summary><p>Astronomiya kuzatuv, o'lchash va tekshiriladigan qonunlarga tayanadi. Astrologiya ilmiy dalilga ega emas.</p></details>
+<details><summary>2. Geosentrik va geliosentrik tizim farqi? Galiley qaysini qo'llab-quvvatladi?</summary><p>Geosentrik tizimda Yer markazda, geliosentrikda Quyosh markazda. Galiley Yupiter yo'ldoshlari va Venera fazalarini kuzatib geliosentrik tizimni qo'llab-quvvatladi.</p></details>
+<details><summary>3. Ulug'bekning merosi bugungi astronomiyaga qanday hissa qo'shgan? (muhokama)</summary><p>Samarqandda rasadxona qurdi va «Ziji Ko'ragoniy» yulduzlar jadvalini tuzdi: aniq kuzatuv fanning asosi ekanini ko'rsatdi.</p></details>
+<div class="box"><b>Faoliyat:</b> sinf 5 guruhga bo'linadi, har biri bitta davr olimi bilan 2 daqiqalik «intervyu» tayyorlaydi. <b>Uy vazifasi:</b> 3 kecha Oyni kuzatib chizing va Stellarium bilan solishtiring.</div></section>
+</main>
+<script>
+const $=id=>document.getElementById(id),cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),TAU=Math.PI*2;
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const stars=Array.from({length:140},(_,i)=>[(i*97%640),(i*53%360),1+(i%3)*.5]);
+function sky(x,t,W,H){x.fillStyle='#050716';x.fillRect(0,0,W,H);stars.forEach((s,i)=>{x.globalAlpha=.4+.6*Math.abs(Math.sin(t*1.5+i));x.fillStyle='#fff';x.fillRect(s[0],s[1]%H,s[2],s[2])});x.globalAlpha=1}
+function txt(x,s,px,py,c,sz,al){x.fillStyle=c||'#efe8d6';x.font=(sz||16)+'px Georgia,serif';x.textAlign=al||'center';x.fillText(s,px,py)}
+function circ(x,px,py,r,c,stroke){x.beginPath();x.arc(px,py,r,0,TAU);if(stroke){x.strokeStyle=c;x.stroke()}else{x.fillStyle=c;x.fill()}}
+
+/* 1-simulyatsiya: masshtablar */
+const L=[["Yer","12 742 km (diametr)","—","Biz yashaydigan sayyora."],["Oy","384 400 km","1,3 soniya","Eng yaqin osmon jismi."],["Quyosh","150 mln km","8 daqiqa","Bizga eng yaqin yulduz."],["Quyosh tizimi","Neptun: 4,5 mlrd km","≈ 4 soat","8 sayyora va ko'plab kichik jismlar."],["Eng yaqin yulduz","Proksima: 4,2 yorug'lik yili","4,2 yil","Yorug'lik yili: yorug'likning 1 yilda bosgan yo'li."],["Somon yo'li","≈ 100 000 yorug'lik yili","100 000 yil","Yuz milliardlab yulduzdan iborat galaktika."],["Galaktikalar klasteri","≈ 10 mln yorug'lik yili","10 mln yil","Galaktikalar guruhlari."],["Kuzatiladigan Koinot","≈ 93 mlrd yorug'lik yili","—","Kosmologiya o'rganadigan eng katta masshtab."]];
+function d1(){const n=+$('s1').value,x=$('c1').getContext('2d');sky(x,0,640,340);
+ for(let i=0;i<=n;i++){const r=6+i*i*4.6;x.globalAlpha=i==n?1:.45;circ(x,320,170,r,i==n?'#e3b04b':'#6ccbc0',1);if(i)txt(x,L[i][0],320,170-r-4,i==n?'#e3b04b':'#a9adc8',12)}
+ x.globalAlpha=1;circ(x,320,170,4,'#fff');const a=L[n];
+ $('i1').innerHTML=`<b>${a[0]}</b>: ${a[3]}<br>O'lcham: ${a[1]}. Yorug'lik yo'li: ${a[2]}.`}
+$('s1').oninput=d1;d1();
+
+/* umumiy pleyer */
+function player(cv,btn,bar,capEl,dur,draw,caps){const x=$(cv).getContext('2d');let t=0,run=false,last=0;
+ function show(){draw(x,t);let c='';caps.forEach(k=>{if(t>=k[0])c=k[1]});$(capEl).textContent=c;$(bar).value=t}
+ function loop(ts){if(run){t+=(ts-last)/1000;if(t>=dur){t=0;run=false;$(btn).textContent='Qayta boshlash'}show()}last=ts;requestAnimationFrame(loop)}
+ $(btn).onclick=()=>{run=!run;$(btn).textContent=run?'To\'xtatish':'Davom ettirish'};
+ $(bar).oninput=e=>{t=+e.target.value;show()};show();requestAnimationFrame(loop)}
+
+/* 1-animatsiya */
+const secs=["Astrometriya","Samoviy mexanika","Astrofizika","Kosmogoniya","Kosmologiya"];
+player('c2','b2','p2','t2',45,(x,t)=>{sky(x,t,640,360);
+ const sa=cl((t-8)/2)*(1-cl((t-26)/4));
+ if(sa>0){x.globalAlpha=sa;circ(x,320,180,14,'#e3b04b');for(let i=0;i<6;i++){const r=32+i*26;circ(x,320,180,r,'#3c4380',1);circ(x,320+r*Math.cos(t*1.2/(i+1)+i),180+r*Math.sin(t*1.2/(i+1)+i),4+(i==2)*2,i==2?'#6ccbc0':'#efe8d6')}x.globalAlpha=1}
+ const ga=cl((t-24)/4);if(ga>0){x.globalAlpha=ga;for(let i=0;i<260;i++){const a=i*.35,r=i*.55,arm=(i%2)*Math.PI;x.fillStyle=i%5?'#efe8d6':'#e3b04b';x.fillRect(320+r*Math.cos(a+arm+t*.15)*1.2,170+r*Math.sin(a+arm+t*.15)*.6,2,2)}x.globalAlpha=1}
+ secs.forEach((s,i)=>{if(t>30+i*2.5){x.globalAlpha=cl((t-30-i*2.5)*2);txt(x,s,320,262+i*17,'#e3b04b',15);x.globalAlpha=1}})},
+ [[0,"Kechqurun boshimizni ko'tarsak, ming-minglab yulduzlarni ko'ramiz. Ular nima? Nega yonadi?"],[10,"Astronomiya sayyoralar harakatini o'lchaydi va yulduzlarning tabiatini o'rganadi."],[26,"U Koinot qanday paydo bo'lganini izlaydi."],[36,"Astronomiya bizga Yerdagi o'rnimizni tushunishga yordam beradi."]]);
+
+/* Vaqt chizig'i */
+const E=[["Qadimgi davr","Misr, Bobil, Xitoy kuzatuvchilari taqvim tuzgan. Aristarx, Gipparx, Ptolemey osmon modellarini yaratgan; Ptolemey geosentrik tizimni ishlab chiqqan."],["Sharq (IX-XV asr)","Al-Xorazmiy, Farg'oniy, Beruniy. 1420-yillarda Mirzo Ulug'bek Samarqandda rasadxona qurdi va «Ziji Ko'ragoniy» jadvalini tuzdi."],["Uyg'onish (XVI-XVII)","Kopernik (1543) geliosentrik tizimni ilgari surdi. Tixo Brage aniq kuzatdi, Kepler sayyora harakati qonunlarini topdi."],["Teleskop davri","Galiley (1609) osmonga teleskop qaratdi. Nyuton (1687) butun olam tortishish qonunini kashf etdi."],["XIX-XX asr","Spektroskopiya yulduzlar tarkibini ochdi. Xabbl (1929) Koinot kengayayotganini isbotladi."],["Kosmik davr","1957 birinchi sun'iy yo'ldosh; 1961 Gagarin; 1969 Oyga qadam; 1990 Xabbl teleskopi; 2021 Jeyms Uebb teleskopi."]];
+E.forEach((e,i)=>{const b=document.createElement('button');b.className='o';b.textContent=e[0];b.onclick=()=>{[...$('tl').children].forEach(c=>c.classList.remove('on'));b.classList.add('on');$('ti').innerHTML='<b>'+e[0]+':</b> '+e[1]};$('tl').appendChild(b);if(!i)b.click()});
+
+/* 2-simulyatsiya: Mars retrogradi */
+let t3=0,run3=false,l3=0,trail=[];
+const ang=t=>{const ex=Math.cos(TAU*t),ey=Math.sin(TAU*t),m=TAU*t/1.881,mx=1.524*Math.cos(m),my=1.524*Math.sin(m);return{ex,ey,mx,my,lam:Math.atan2(my-ey,mx-ex)}};
+function d3(){const x=$('c3').getContext('2d');x.fillStyle='#050716';x.fillRect(0,0,640,400);
+ const S=100,cx=170,cy=150,a=ang(t3);
+ circ(x,cx,cy,S,'#3c4380',1);circ(x,cx,cy,S*1.524,'#3c4380',1);circ(x,cx,cy,7,'#e3b04b');
+ const ex=cx+S*a.ex,ey=cy+S*a.ey,mx=cx+S*a.mx,my=cy+S*a.my;
+ x.strokeStyle='#6ccbc088';x.beginPath();x.moveTo(ex,ey);x.lineTo(ex+(mx-ex)*1.9,ey+(my-ey)*1.9);x.stroke();
+ circ(x,ex,ey,5,'#6ccbc0');circ(x,mx,my,5,'#ff7b6b');txt(x,'Yer',ex,ey-9,'#6ccbc0',12);txt(x,'Mars',mx,my-9,'#ff7b6b',12);txt(x,'Quyosh markazda (geliosentrik)',cx,308,'#a9adc8',13);
+ /* osmondagi ko'rinma o'rni */
+ const gx=380,gw=250,gy=40,gh=230;txt(x,'Marsning osmondagi o\'rni (Yerdan)',gx+gw/2,22,'#efe8d6',13);
+ x.strokeStyle='#3c4380';x.strokeRect(gx,gy,gw,gh);
+ let prev=null,retro=false,u=0;const N=Math.floor(t3/.01);let lam0=ang(0).lam,acc=0,pl=lam0;const pts=[];
+ for(let i=0;i<=N;i++){const l=ang(i*.01).lam;let dl=l-pl;if(dl>Math.PI)dl-=TAU;if(dl<-Math.PI)dl+=TAU;acc+=dl;pl=l;pts.push([i*.01,acc,dl<0])}
+ const yr=v=>gy+gh-((v+.6)/2.4)*gh;
+ for(let i=1;i<pts.length;i++){x.strokeStyle=pts[i][2]?'#ff7b6b':'#efe8d6';x.beginPath();x.moveTo(gx+pts[i-1][0]/3.8*gw,yr(pts[i-1][1]));x.lineTo(gx+pts[i][0]/3.8*gw,yr(pts[i][1]));x.stroke()}
+ const last=pts[pts.length-1]||[0,0,false];circ(x,gx+last[0]/3.8*gw,yr(last[1]),4,'#ff7b6b');
+ txt(x,'vaqt →',gx+gw/2,gy+gh+16,'#a9adc8',12);
+ $('i3').innerHTML=last[2]?'<b>Retrograd:</b> Mars osmonda orqaga yurmoqda (qizil chiziq). Yer Marsni quvib o\'tmoqda.':'Mars osmonda odatdagidek oldinga (sharqqa) siljiyapti.';
+ $('s3').value=t3}
+function lp3(ts){if(run3&&!RM||run3){t3+=(ts-l3)/1000*.25;if(t3>=3.8){t3=0;run3=false;$('b3').textContent='Qayta boshlash'}d3()}l3=ts;requestAnimationFrame(lp3)}
+$('b3').onclick=()=>{run3=!run3;$('b3').textContent=run3?'To\'xtatish':'Davom ettirish'};$('s3').oninput=e=>{t3=+e.target.value;d3()};d3();requestAnimationFrame(lp3);
+
+/* 2-animatsiya: 5000 yil */
+player('c4','b4','p4','t4',60,(x,t)=>{sky(x,t,640,360);const cx=320,cy=190;
+ if(t<10){txt(x,'Qadimgi kuzatuvchi: Oy fazalari',cx,30,'#e3b04b',15);const ph=(t/10)*TAU;x.save();x.beginPath();x.arc(cx,cy,70,0,TAU);x.clip();x.fillStyle='#efe8d6';x.fillRect(cx-70,cy-70,140,140);x.fillStyle='#0a0d22';x.beginPath();x.arc(cx+140*Math.sin(ph)*(1),cy,70,0,TAU);x.fill();x.restore();circ(x,cx,cy,70,'#5a6099',1)}
+ else if(t<25){txt(x,'Ptolemey: Yer markazda (geosentrik)',cx,30,'#e3b04b',15);circ(x,cx,cy,9,'#6ccbc0');circ(x,cx,cy,110,'#3c4380',1);const a=t*.5,px=cx+110*Math.cos(a),py=cy+110*Math.sin(a);circ(x,px,py,38,'#3c4380',1);circ(x,px+38*Math.cos(a*6),py+38*Math.sin(a*6),5,'#ff7b6b');
+  if(t>18){x.strokeStyle='#e3b04b';x.lineWidth=3;x.beginPath();x.arc(cx,340,90,Math.PI*1.15,Math.PI*1.85);x.stroke();x.lineWidth=1;txt(x,"Ulug'bek rasadxonasi (Samarqand, XV asr)",cx,350,'#e3b04b',13)}}
+ else if(t<40){txt(x,'Kopernik: Quyosh markazda (geliosentrik)',cx,30,'#e3b04b',15);circ(x,cx,cy,12,'#e3b04b');[60,95,130].forEach((r,i)=>{circ(x,cx,cy,r,'#3c4380',1);circ(x,cx+r*Math.cos(t*(1.5-i*.4)),cy+r*Math.sin(t*(1.5-i*.4)),5,['#efe8d6','#6ccbc0','#ff7b6b'][i])});
+  if(t>33){const jx=cx+165*Math.cos(t*.3),jy=cy+165*Math.sin(t*.3);circ(x,jx,jy,8,'#e3b04b88');for(let k=0;k<4;k++)circ(x,jx+(14+k*7)*Math.cos(t*(4-k)),jy+(14+k*7)*Math.sin(t*(4-k)),1.6,'#fff');txt(x,'Galiley: Yupiter yo\'ldoshlari',cx,340,'#a9adc8',13)}}
+ else{const k=t-40;txt(x,k<10?'Kosmik davr: raketa, Gagarin, Oy':'Jeyms Uebb teleskopi: Koinot chekkasigacha',cx,30,'#e3b04b',15);
+  if(k<10){const ry=330-k*30;circ(x,cx,ry,7,'#efe8d6');x.fillStyle='#ff7b6b';x.beginPath();x.moveTo(cx-5,ry+6);x.lineTo(cx,ry+24+Math.random()*10);x.lineTo(cx+5,ry+6);x.fill()}
+  else{for(let i=0;i<7;i++){const a=i*TAU/6,hx=cx+(i?46*Math.cos(a):0),hy=cy+(i?46*Math.sin(a):0);x.fillStyle='#e3b04b';x.beginPath();for(let j=0;j<6;j++)x.lineTo(hx+26*Math.cos(j*TAU/6+.52),hy+26*Math.sin(j*TAU/6+.52));x.closePath();x.fill();x.strokeStyle='#050716';x.stroke()}}}},
+ [[0,"Ming yillar avval odamlar osmonga qarab vaqtni hisoblagan."],[10,"Yunon olimlari Yer markazda deb o'ylagan. XV asrda Ulug'bek Samarqandda mingdan ortiq yulduz o'rnini aniqladi."],[25,"Kopernik markazga Quyoshni qo'ydi, Galiley esa teleskop orqali buni tasdiqladi. Nyuton tortishish qonunini kashf etdi."],[40,"Bugun esa kosmik teleskoplar Koinotning eng chekkasigacha ko'ra oladi."],[52,"Bilim shunday bosqichma-bosqich o'sadi."]]);
+</script></body></html>
